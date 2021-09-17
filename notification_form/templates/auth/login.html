@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block header_title %}Log In{% endblock %}
+
+{% block header %}
+  <link href="{{ url_for('static', filename='signin.css') }}" rel="stylesheet">
+  <h1>{% block title %}Log In{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<!-- <form method="post">
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input name="username" type="username" class="form-control" id="username">
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" name="password" id="password" class="form-control" aria-describedby="passwordHelpBlock" required>
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form> -->
+
+<main class="form-signin">
+  <form method="post">
+    <!-- <img class="mb-4 bi-code" src="" alt="" width="72" height="57"> -->
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <div class="form-floating">
+      <input name="username" type="email" class="form-control" id="username" placeholder="name@example.com" required>
+      <label for="username">Email address</label>
+    </div>
+    <div class="form-floating">
+      <input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
+      <label for="password">Password</label>
+    </div>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+  </form>
+</main>
+{% endblock %}

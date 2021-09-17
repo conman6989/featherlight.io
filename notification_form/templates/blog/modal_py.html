@@ -1,0 +1,115 @@
+
+  <!-- Modal -->
+  <div class="modal fade" id="pyModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="pyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center" id="pyModalLabel">Notification Form - Python</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <form action="/api/submit" method="post" id="pyForm">
+          <div class="modal-body row g-3">
+
+            <div class="col-md-6">
+              <label for="firstName" class="form-label">First name</label>
+              <input name="firstName" id="firstName" pattern="[a-zA-Z]+" min="1" max="64" type="text" class="form-control"
+              placeholder="Michael" title="Required and must only contain letters, no numbers" required>
+            </div>
+
+            <div class="col-md-6">
+              <label for="lastName" class="form-label">Last name</label>
+              <input name="lastName" id="lastName" pattern="[a-zA-Z]+" min="1" max="64" type="text" class="form-control"
+                placeholder="Dere" title="Required and must only contain letters, no numbers" required>
+            </div>
+
+            <label class="col-md-12 mt-3">
+              How would you like to be notified?
+            </label>
+
+            <div class="col-md-6 form-check">
+              <input class="form-check-input" type="checkbox" value="" id="emailChecked_py" onclick="emailCheckboxCheck()">
+              <label for="email_py" class="form-label">Email</label>
+              <input name="email" type="email" id="email_py" class="form-control">
+            </div>
+
+            <div class="col-md-6 form-check">
+              <input class="form-check-input" type="checkbox" value="" id="phoneChecked_py" onclick="phoneCheckboxCheck()">
+              <label for="phone_py" class="form-label">Phone Number</label>
+              <input name="phone" type="tel" id="phone_py" pattern="[0-9]{10}" class="form-control" placeholder="123-456-7890 ">
+            </div>
+
+            <div class="col-12">
+              <label for="supervisor" class="form-label">Supervisor</label>
+              <select name="supervisor" id="supervisor" class="form-select" required>
+                <option selected disabled value="">Choose...</option>
+                {% for supervisor in supervisors_list %}
+                <option>{{ supervisor }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button id="submit_py" class="btn btn-primary" type="">Submit form</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<script>
+  function phoneCheckboxCheck() {
+    var phoneCheckbox = document.getElementById('phoneChecked_py');
+    phonepy = document.getElementById('phone_py');
+    if(phoneCheckbox.checked == true) {
+      phonepy.setAttribute("required", "")
+    } else {
+      phonepy.removeAttribute("required")
+    }
+  };
+
+  function emailCheckboxCheck() {
+    var emailCheckbox = document.getElementById('emailChecked_py');
+    emailpy = document.getElementById('email_py');
+    if(emailCheckbox.checked == true) {
+      emailpy.setAttribute("required", "")
+    } else {
+      emailpy.removeAttribute("required")
+    }
+  };
+
+  (function() {
+  const form = document.querySelector('#pyForm');
+  const checkboxes = form.querySelectorAll('input[type=checkbox]');
+  const checkboxLength = checkboxes.length;
+  const firstCheckbox = checkboxLength > 0 ? checkboxes[0] : null;
+
+  function init() {
+    if (firstCheckbox) {
+      for (let i = 0; i < checkboxLength; i++) {
+        checkboxes[i].addEventListener('change', checkValidity);
+      }
+
+      checkValidity();
+    }
+  }
+
+  function isChecked() {
+    const checkedCheckboxes = form.querySelectorAll('input[type="checkbox"]:checked');
+
+    return checkedCheckboxes.length >= 1;
+  }
+
+  function checkValidity() {
+    const errorMessage = !isChecked() ? 'At least one checkboxes must be selected.' : '';
+    firstCheckbox.setCustomValidity(errorMessage);
+  }
+
+  init();
+})();
+
+
+</script>

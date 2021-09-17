@@ -1,0 +1,175 @@
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center" id="exampleModalLabel">Notification Form - Javascript</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="/api/submit" method="post" class="needs-validation" novalidate>
+          <div class="modal-body row g-3">
+
+            <div class="col-md-6">
+              <label for="firstName" class="form-label">First name</label>
+              <input name="firstName" id="firstName" pattern="[a-zA-Z]+" min="1" max="64" type="text" class="form-control"
+                placeholder="Michael" title="Required and must only contain letters, no numbers" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Name fields are required and must only contain letters, no numbers.
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="lastName" class="form-label">Last name</label>
+              <input name="lastName" id="lastName" pattern="[a-zA-Z]+" min="1" max="64" type="text" class="form-control"
+                placeholder="Dere" title="Required and must only contain letters, no numbers" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Name fields are required and must only contain letters, no numbers.
+              </div>
+            </div>
+
+            <label class="col-md-12 mt-3">
+              How would you like to be notified?
+            </label>
+
+            <div class="col-md-6 form-check">
+              <div>
+                <input class="form-check-input" type="checkbox" value="" id="emailChecked" onclick="checkBoxValidity()">
+                <div class="invalid-feedback">
+                  Please select one.
+                </div>
+              </div>
+              <label for="email" class="form-label">Email</label>
+              <input name="email" type="email" class="form-control" id="email" required>
+              <div class="invalid-feedback">
+                Please provide a valid Email address.
+              </div>
+            </div>
+
+            <div class="col-md-6 form-check">
+              <div>
+                <input class="form-check-input" type="checkbox" value="" id="phoneChecked" onclick="checkBoxValidity()">
+                <div class="invalid-feedback">
+                  Please select one.
+                </div>
+              </div>
+              <label for="phone" class="form-label">Phone Number</label>
+              <!-- <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890 " required> -->
+              <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" class="form-control" placeholder="123-456-7890 " required>
+              <div class="invalid-feedback">
+                Please provide a valid Phone Number.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="supervisor" class="form-label">Supervisor</label>
+              <select name="supervisor" id="supervisor" class="form-select" required>
+                <option selected disabled value="">Choose...</option>
+              </select>
+              <div class="invalid-feedback">
+                Please select one.
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button class="btn btn-primary" type="submit">Submit form</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    (function () {
+      'use strict'
+
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.needs-validation')
+
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+  </script>
+
+<script>
+  function checkBoxValidity() {
+    var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
+    phone = document.getElementById('phoneChecked');
+    email = document.getElementById('emailChecked');
+    if(checkboxes.length == 0) {
+      phone.setAttribute("required", "")
+      email.setAttribute("required", "")
+    } else {
+      phone.removeAttribute("required")
+      email.removeAttribute("required")
+    }
+  };
+</script>
+
+  <script>
+    // plain javascript to get manager JSON
+    var getJSON = function (url, callback) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', url, true);
+      xhr.responseType = 'json';
+      xhr.onload = function () {
+        var status = xhr.status;
+        if (status === 200) {
+          callback(null, xhr.response);
+        } else {
+          callback(status, xhr.response);
+        }
+      };
+      xhr.send();
+    };
+    getJSON('https://609aae2c0f5a13001721bb02.mockapi.io/lightfeather/managers',
+      function (err, data) {
+        if (err !== null) {
+          alert('Something went wrong: ' + err);
+        } else {
+          // sort data by first name
+          data.sort(function (a, b) {
+            return a.firstName.localeCompare(b.firstName);
+          });
+          // sort data by last name
+          data.sort(function (a, b) {
+            return a.lastName.localeCompare(b.lastName);
+          });
+          // sort data finally by jurisdiction
+          data.sort(function (a, b) {
+            return a.jurisdiction.localeCompare(b.jurisdiction);
+          });
+          const regexp = /[0-9]/gi;
+          data.forEach(element => {
+            let option = document.createElement("option")
+            // only add to the list if jurisdiction not numeric
+            if (element.jurisdiction.match(regexp)){
+                return
+            }
+            option.append(element.jurisdiction + " - " + element.lastName + ', ' + element.firstName)
+            document.getElementById("supervisor").append(option)
+          });
+        }
+      });
+  </script>

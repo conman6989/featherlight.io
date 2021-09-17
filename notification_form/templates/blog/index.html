@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block header_title %}My Posts{% endblock %}
+
+{% block header %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="display-5">{% block title %}Posts{% endblock %}</div>
+    </div>
+    <div class="col-auto">
+      {% if g.user %}
+      <a id="new_post" class="btn btn-primary float-right align-content-end" href="{{ url_for('blog.create') }}" role="button">New</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+  {% for post in posts %}
+  <div class="card mb-5">
+    <div class="card-header">
+      <figure>
+        <blockquote class="blockquote">
+          <h3 class="display-6" style="text-transform: capitalize;">{{ post['title'] }}</h3>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+          by {{ post['username'] }} on <cite title="Source Title">{{ post['created'].strftime('%Y-%m-%d') }}</cite>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{ post['body'] }}</p>
+    </div>
+    <div class="card-footer text-muted">
+      {% if g.user['id'] == post['author_id'] %}
+      <a class="btn btn-secondary btn-sm" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
+      {% endif %}
+    </div>
+  </div>
+    {% if not loop.last %}
+    {% endif %}
+  {% endfor %}
+{% endblock %}

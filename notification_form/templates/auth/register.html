@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% block header_title %}Register{% endblock %}
+
+{% block header %}
+  <h1>{% block title %}Register{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post" class="row g-3 needs-validation" novalidate>
+      <div class="col-md-4">
+        <label for="firstName" class="form-label">First name</label>
+        <input name="firstName" id="firstName" pattern="[a-zA-Z]+" min="1" max="64" type="text" class="form-control" placeholder="Mark" title="Required and must only contain letters, no numbers" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Name fields are required and must only contain letters, no numbers.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="lastName" class="form-label">Last name</label>
+        <input name="lastName" id="lastName" pattern="[a-zA-Z]+" min="1" max="64" type="text" class="form-control" placeholder="Otto" title="Required and must only contain letters, no numbers" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Name fields are required and must only contain letters, no numbers.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="username" class="form-label">Username</label>
+        <div class="input-group has-validation">
+          <span class="input-group-text" id="inputGroupPrepend">@</span>
+          <input name="username" type="text" class="form-control" id="username" aria-describedby="inputGroupPrepend" required>
+          <div class="invalid-feedback">
+            Please choose a username.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="city" class="form-label">City</label>
+        <input name="city" id="city" type="text" class="form-control" required>
+        <div class="invalid-feedback">
+          Please provide a valid city.
+        </div>
+      </div>
+      <div class="col-md-3">
+        <label for="state" class="form-label">State</label>
+        <select class="form-select" name="state" id="state" required>
+          <option selected disabled value="">Choose...</option>
+          <option value="AL">Alabama (AL)</option>
+          <option value="AK">Alaska (AK)</option>
+          <option value="AZ">Arizona (AZ)</option>
+          <option value="AR">Arkansas (AR)</option>
+          <option value="CA">California (CA)</option>
+          <option value="CO">Colorado (CO)</option>
+          <option value="CT">Connecticut (CT)</option>
+          <option value="DE">Delaware (DE)</option>
+          <option value="DC">District Of Columbia (DC)</option>
+          <option value="FL">Florida (FL)</option>
+          <option value="GA">Georgia (GA)</option>
+          <option value="HI">Hawaii (HI)</option>
+          <option value="ID">Idaho (ID)</option>
+          <option value="IL">Illinois (IL)</option>
+          <option value="IN">Indiana (IN)</option>
+          <option value="IA">Iowa (IA)</option>
+          <option value="KS">Kansas (KS)</option>
+          <option value="KY">Kentucky (KY)</option>
+          <option value="LA">Louisiana (LA)</option>
+          <option value="ME">Maine (ME)</option>
+          <option value="MD">Maryland (MD)</option>
+          <option value="MA">Massachusetts (MA)</option>
+          <option value="MI">Michigan (MI)</option>
+          <option value="MN">Minnesota (MN)</option>
+          <option value="MS">Mississippi (MS)</option>
+          <option value="MO">Missouri (MO)</option>
+          <option value="MT">Montana (MT)</option>
+          <option value="NE">Nebraska (NE)</option>
+          <option value="NV">Nevada (NV)</option>
+          <option value="NH">New Hampshire (NH)</option>
+          <option value="NJ">New Jersey (NJ)</option>
+          <option value="NM">New Mexico (NM)</option>
+          <option value="NY">New York (NY)</option>
+          <option value="NC">North Carolina (NC)</option>
+          <option value="ND">North Dakota (ND)</option>
+          <option value="OH">Ohio (OH)</option>
+          <option value="OK">Oklahoma (OK)</option>
+          <option value="OR">Oregon (OR)</option>
+          <option value="PA">Pennsylvania (PA)</option>
+          <option value="RI">Rhode Island (RI)</option>
+          <option value="SC">South Carolina (SC)</option>
+          <option value="SD">South Dakota (SD)</option>
+          <option value="TN">Tennessee (TN)</option>
+          <option value="TX">Texas (TX)</option>
+          <option value="UT">Utah (UT)</option>
+          <option value="VT">Vermont</option>
+          <option value="VA">Virginia</option>
+          <option value="WA">Washington</option>
+          <option value="WV">West Virginia</option>
+          <option value="WI">Wisconsin</option>
+          <option value="WY">Wyoming</option>
+        </select>
+        <div class="invalid-feedback">
+          Please select a valid state.
+        </div>
+      </div>
+      <div class="col-md-3">
+        <label for="zip" class="form-label">Zip</label>
+        <input name="zip" id="zip" pattern="[0-9]{5}" type="text" class="form-control"required>
+        <div class="invalid-feedback">
+          Please provide a valid zip.
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="email" class="form-label">Email address</label>
+        <input name="email" id="email" type="email" class="form-control"  aria-describedby="emailHelp" required>
+        <div id="emailHelp" class="form-text">
+          We'll never share your email with anyone else.
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" name="password" id="password" class="form-control" aria-describedby="passwordHelpBlock" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,64}$" required>
+        <div id="passwordHelpBlock" class="form-text">
+          Your password must be 8-64 characters long, contain at least one upper & lower case letter, number and a special character, and must not contain spaces, or emoji.
+        </div>
+
+      </div>
+      <div class="col-12">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+          <label class="form-check-label" for="invalidCheck">
+            Agree to terms and conditions
+          </label>
+          <div class="invalid-feedback">
+            You must agree before submitting.
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <button class="btn btn-primary" type="submit">Submit form</button>
+      </div>
+    </form>
+  </form>
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+  </script>
+{% endblock %}
