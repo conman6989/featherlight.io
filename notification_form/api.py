@@ -64,8 +64,8 @@ def api_submit():
             error = "Last Name is required and cannot be a number"
         elif not email:
             error = "Email address is required."
-        elif not phone:
-            error = "Phone Number is required."
+        elif not phone or not phone.isdigit() or len(phone) != 10:
+            error = "A Phone Number is required."
         elif not supervisor:
             error = "Supervisor is required."
         elif email_checkbox == False and phone_checkbox == False:
