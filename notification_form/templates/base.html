@@ -42,7 +42,7 @@
               <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://brainasium.app/code-challenge">Other Projects</a>
+              <a class="nav-link" href="https://brainasium.app/projects">Other Projects</a>
             </li>
             {% if g.user %}
             <li class="nav-item">
@@ -66,7 +66,10 @@
         {% block header %}{% endblock %}
       </header>
       {% for message in get_flashed_messages() %}
-      <div class="flash">{{ message }}</div>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
       {% endfor %}
       {% block content %}{% endblock %}
     </section>

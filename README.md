@@ -15,9 +15,9 @@ in that same bar I have added a link to my site github pages site. there you can
 I currently Host 3 webapps from my home with Docker and Nginx with Certbot.
 I would be more than happy to send you the demo logins for any of my sites.
 
-https://brainasium.app/projects
-https://www.iaai.io/ - requires demo login
-https://elliott-wellman.app/ - requires demo login
+ - https://brainasium.app/projects
+ - https://www.iaai.io/ - requires demo login
+ - https://elliott-wellman.app/ - requires demo login
 
 ## Install
 -------

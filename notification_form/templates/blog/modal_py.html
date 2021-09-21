@@ -16,12 +16,14 @@
               <label for="firstName" class="form-label">First name</label>
               <input name="firstName" id="firstName" pattern="[a-zA-Z]+" min="1" max="64" type="text" class="form-control"
               placeholder="Michael" title="Required and must only contain letters, no numbers" required>
+              <!-- <input name="firstName" id="firstName" type="text" class="form-control" placeholder="Michael" title="Required and must only contain letters, no numbers" required> -->
             </div>
 
             <div class="col-md-6">
               <label for="lastName" class="form-label">Last name</label>
               <input name="lastName" id="lastName" pattern="[a-zA-Z]+" min="1" max="64" type="text" class="form-control"
                 placeholder="Dere" title="Required and must only contain letters, no numbers" required>
+              <!-- <input name="lastName" id="lastName" type="text" class="form-control" placeholder="Dere" title="Required and must only contain letters, no numbers" required> -->
             </div>
 
             <label class="col-md-12 mt-3">
@@ -29,15 +31,16 @@
             </label>
 
             <div class="col-md-6 form-check">
-              <input class="form-check-input" type="checkbox" value="" id="emailChecked_py" onclick="emailCheckboxCheck()">
+              <input name="email_checkbox" class="form-check-input" type="checkbox" value="True" id="email_checkbox">
               <label for="email_py" class="form-label">Email</label>
               <input name="email" type="email" id="email_py" class="form-control">
             </div>
 
             <div class="col-md-6 form-check">
-              <input class="form-check-input" type="checkbox" value="" id="phoneChecked_py" onclick="phoneCheckboxCheck()">
+              <input name="phone_checkbox" class="form-check-input" type="checkbox" value="True" id="phone_checkbox">
               <label for="phone_py" class="form-label">Phone Number</label>
-              <input name="phone" type="tel" id="phone_py" pattern="[0-9]{10}" class="form-control" placeholder="123-456-7890 ">
+              <!-- <input name="phone" type="tel" id="phone_py" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" placeholder="123-456-7890 "> -->
+              <input name="phone" type="tel" id="phone_py" class="form-control" placeholder="123-456-7890 ">
             </div>
 
             <div class="col-12">
